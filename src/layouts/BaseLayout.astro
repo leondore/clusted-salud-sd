@@ -11,6 +11,18 @@ const { pageTitle } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+
+    <style is:global>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+
+      @layer base {
+        .cssd-container {
+          @apply mx-auto block px-4 md:w-[750px] lg:w-[970px] xl:w-[1170px];
+        }
+      }
+    </style>
   </head>
 
   <body>
