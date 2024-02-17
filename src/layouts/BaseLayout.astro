@@ -1,7 +1,13 @@
 ---
+interface Props {
+  pageTitle: string;
+  children: any;
+}
+
 import '@fontsource-variable/raleway';
-import Header from '../components/Header.astro';
-const { pageTitle } = Astro.props;
+import Header from '@components/Header.astro';
+
+const { pageTitle = 'Home' } = Astro.props;
 ---
 
 <html lang="en">
@@ -10,7 +16,7 @@ const { pageTitle } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    <title>{pageTitle} | Cluster de Salud Santo Domingo</title>
 
     <style is:global>
       @tailwind base;
@@ -27,6 +33,7 @@ const { pageTitle } = Astro.props;
 
   <body>
     <Header />
+
     <slot />
   </body>
 </html>

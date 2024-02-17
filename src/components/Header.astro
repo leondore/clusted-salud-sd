@@ -1,4 +1,32 @@
-<div class="bg-zinc-600 py-3 text-sm text-zinc-400">
+---
+import { Image } from 'astro:assets';
+import logo from '@assets/logo.jpg';
+
+const menu = [
+  {
+    name: 'Inicio',
+    href: '/',
+  },
+  {
+    name: 'Sobre Nosotros',
+    href: '/nosotros',
+  },
+  {
+    name: 'Sobre los Clusters',
+    href: '/sobre-clusters',
+  },
+  {
+    name: 'HUBHealth',
+    href: '/hubhealth',
+  },
+  {
+    name: 'Contáctanos',
+    href: '/contacto',
+  },
+];
+---
+
+<div class="relative bg-zinc-600 py-3 text-sm text-zinc-400">
   <div
     class="cssd-container text-center sm:flex sm:items-center sm:justify-between"
   >
@@ -48,5 +76,25 @@
         >
       </a>
     </div>
+  </div>
+</div>
+
+<div class="relative bg-white py-1.5">
+  <div class="cssd-container flex items-center justify-between">
+    <Image src={logo} alt="Cluster Salud SD" width="324" height="118" />
+
+    <nav>
+      <ul class="flex items-center">
+        {
+          menu.map((item) => (
+            <li>
+              <a href={item.href} class="block px-4 py-2 text-zinc-600">
+                {item.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
   </div>
 </div>
