@@ -8,6 +8,15 @@ export default {
       fontFamily: {
         sans: ['Raleway Variable', ...defaultTheme.fontFamily.sans],
       },
+      colors: {
+        primary: '#0f718c',
+        secondary: {
+          DEFAULT: '#53c3dd',
+          hover: '#65c9e0',
+          light: '#73d1e7',
+        },
+        accent: '#f15b5a',
+      },
     },
   },
   plugins: [],

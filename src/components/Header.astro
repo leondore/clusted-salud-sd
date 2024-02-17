@@ -2,6 +2,8 @@
 import { Image } from 'astro:assets';
 import logo from '@assets/logo.jpg';
 
+const path = Astro.url.pathname;
+
 const menu = [
   {
     name: 'Inicio',
@@ -79,22 +81,111 @@ const menu = [
   </div>
 </div>
 
-<div class="relative bg-white py-1.5">
-  <div class="cssd-container flex items-center justify-between">
-    <Image src={logo} alt="Cluster Salud SD" width="324" height="118" />
+<div class="relative bg-white py-5 lg:py-1.5" x-data="{ open: false }">
+  <div
+    class="cssd-container flex items-center justify-between md:flex-col lg:flex-row"
+  >
+    <a
+      href="/"
+      class="mx-auto mb-2 block w-60 flex-shrink-0 flex-grow-0 lg:mb-0 lg:w-72 lg:basis-72 xl:w-80 xl:basis-80"
+      ><Image src={logo} alt="Cluster Salud SD" /></a
+    >
 
-    <nav>
-      <ul class="flex items-center">
-        {
-          menu.map((item) => (
-            <li>
-              <a href={item.href} class="block px-4 py-2 text-zinc-600">
-                {item.name}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <div class="flex-auto text-right">
+      <button
+        type="button"
+        class="hamburger bg-secondary p-2.5 md:hidden"
+        :class="open ? 'active' : ''"
+        aria-label="Abrir menú"
+        aria-controls="navigation"
+        @click="open = !open"
+      >
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+
+      <nav class="hidden md:!block">
+        <ul
+          class="flex items-center justify-center text-sm lg:justify-end xl:text-base"
+        >
+          {
+            menu.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={[
+                    'block px-4 py-2 hover:bg-primary hover:text-white focus:bg-primary focus:text-white',
+                    { 'bg-white text-zinc-600': path !== item.href },
+                    { 'bg-primary text-white': path === item.href },
+                  ]}
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
   </div>
+
+  <nav id="navigation" class="px-4 md:hidden" x-show="open" x-collapse>
+    <ul class="text-sm">
+      {
+        menu.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="bg-secondary border-secondary-light hover:bg-secondary-hover focus:bg-secondary-hover block border-t border-solid px-8 py-3.5 uppercase text-white"
+            >
+              {item.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
 </div>
+
+<style>
+  .hamburger-box {
+    @apply relative block h-6 w-8;
+  }
+
+  .hamburger-inner,
+  .hamburger-inner::before,
+  .hamburger-inner::after {
+    @apply absolute h-1 w-8 rounded bg-white transition-transform;
+  }
+
+  .hamburger-inner {
+    @apply top-0.5 -mt-0.5 block;
+  }
+
+  .hamburger-inner::before,
+  .hamburger-inner::after {
+    @apply block content-[""];
+  }
+
+  .hamburger-inner::before {
+    @apply top-2.5 transition-opacity;
+  }
+
+  .hamburger-inner::after {
+    @apply -bottom-2.5 top-5;
+  }
+
+  .hamburger.active .hamburger-inner {
+    transform: translate3d(0, 10px, 0) rotate(45deg);
+  }
+
+  .hamburger.active .hamburger-inner::before {
+    transform: rotate(-45deg) translate3d(-5.71429px, -6px, 0);
+    opacity: 0;
+  }
+
+  .hamburger.active .hamburger-inner::after {
+    transform: translate3d(0, -20px, 0) rotate(-90deg);
+  }
+</style>
