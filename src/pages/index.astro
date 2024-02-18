@@ -1,8 +1,42 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/Button.astro';
+import hero from '@assets/cssd-banner.jpg';
+
 const pageTitle = 'Inicio';
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <h1 class="text-3xl font-bold underline">Cluster de Salud Santo Domingo</h1>
+  <div class="grid grid-cols-1 items-center">
+    <Image
+      src={hero}
+      alt="Cluster de Salud Santo Domingo"
+      class="col-span-full row-span-full h-full w-full object-cover"
+    />
+
+    <div class="col-span-full row-span-full my-4 text-right text-zinc-700">
+      <div class="cssd-container">
+        <div class="ml-auto w-full max-w-max bg-white/80 p-5">
+          <h1 class="mb-5 text-3xl lg:text-4xl xl:text-5xl">
+            <strong class="block font-extrabold">Cluster de Salud</strong>Santo
+            Domingo
+          </h1>
+
+          <p
+            class="mb-5 text-sm uppercase leading-normal lg:text-base xl:text-lg"
+          >
+            Creando Sinergias, Optimizando Competitividad
+          </p>
+          <Button
+            as="a"
+            href="/nosotros"
+            intent="accent"
+            class="uppercase lg:!text-base xl:!text-lg"
+            >Se Parte Del Cambio</Button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
 </BaseLayout>

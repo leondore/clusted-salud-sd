@@ -31,9 +31,11 @@ const { pageTitle = 'Home' } = Astro.props;
     </style>
   </head>
 
-  <body>
+  <body class="text-zinc-500">
     <Header />
 
-    <slot />
+    <main class="relative">
+      <slot />
+    </main>
   </body>
 </html>
