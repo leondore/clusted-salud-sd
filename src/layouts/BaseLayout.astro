@@ -24,6 +24,19 @@ const { pageTitle = 'Home' } = Astro.props;
       @tailwind utilities;
 
       @layer base {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          @apply font-bold text-zinc-700;
+        }
+
+        p {
+          @apply text-sm;
+        }
+
         .cssd-container {
           @apply mx-auto block px-4 md:w-[750px] lg:w-[970px] xl:w-[1170px];
         }
