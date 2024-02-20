@@ -1,7 +1,9 @@
 ---
 title: 'Se Conforma 3era Edicion del Foro #HUBHealth del Cluster de Salud de Santo Domingo'
-pubDate: 2019-03-02
+pubDate: '2019-03-02'
 author: 'HUBHealth'
+blurb: 'La 3era Edicion del Foro #HUBHealth del Cluster de Salud de Santo Domingo (CSSD), sera realizado el 8 de Marzo de 3 PM a 6 PM en el contexto de la feria commercial HUB de la Camara de Comercio y Produccion de Santo Domingo.'
+image: './hubhealth.jpg'
 ---
 
 # Se Conforma 3era Edicion del Foro #HUBHealth del Cluster de Salud de Santo Domingo

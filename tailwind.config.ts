@@ -7,6 +7,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Raleway Variable', ...defaultTheme.fontFamily.sans],
+        serif: ['Lora Variable', ...defaultTheme.fontFamily.serif],
       },
       colors: {
         primary: '#0f718c',

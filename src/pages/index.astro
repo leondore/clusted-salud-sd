@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Button from '@components/Button.astro';
@@ -12,10 +13,12 @@ import iconClusters from '@assets/icon-clusters.png';
 const pageTitle = 'Inicio';
 const featureBorder =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATkAAAALCAYAAAAEJPrjAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjI4RTNFRURDNTYzMTFFM0FBRUZBQUY5NTk1MzQ4NjEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjI4RTNFRUVDNTYzMTFFM0FBRUZBQUY5NTk1MzQ4NjEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGMjhFM0VFQkM1NjMxMUUzQUFFRkFBRjk1OTUzNDg2MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGMjhFM0VFQ0M1NjMxMUUzQUFFRkFBRjk1OTUzNDg2MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmJ4c8MAAAB8SURBVHja7Nm7CYBAFARAzzaMxBoFIwMjwRb9JFrHibmC4i+ZKWE5llteiDEm8KRhWk4/qiLPgsR4UyoCQMnBTV3bCAElB6DkAC4I/Ti7PPD5RC2rWkB8U3Kuqzxt77q6Fd5esbmuYq4CKDkAc5Uf5+oRcxU/OYAbVgEGAMnZIDwvK/1pAAAAAElFTkSuQmCC';
+
+const noticias = await getCollection('noticias');
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <div class="grid grid-cols-1 items-center">
+  <section class="grid grid-cols-1 items-center">
     <Image
       src={hero}
       alt="Cluster de Salud Santo Domingo"
@@ -25,7 +28,7 @@ const featureBorder =
     <div class="col-span-full row-span-full my-4 text-right text-zinc-700">
       <div class="cssd-container">
         <div class="ml-auto w-full max-w-max bg-white/80 p-5 sm:bg-transparent">
-          <h1 class="mb-5 text-3xl lg:text-4xl xl:text-5xl">
+          <h1 class="mb-5 text-3xl font-normal lg:text-4xl xl:text-5xl">
             <strong class="block font-extrabold">Cluster de Salud</strong>Santo
             Domingo
           </h1>
@@ -45,9 +48,9 @@ const featureBorder =
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="bg-white py-16">
+  <section class="bg-white py-14">
     <div class="cssd-container grid grid-cols-3 gap-10 md:gap-4">
       <div class="col-span-3 text-center md:col-span-1">
         <Image src={iconNosotros} alt="Sobre Nosotros" class="mx-auto mb-7" />
@@ -83,8 +86,63 @@ const featureBorder =
         </p>
       </div>
     </div>
-  </div></BaseLayout
->
+  </section>
+
+  <section class="bg-zinc-100 py-14 text-center">
+    <div class="cssd-container">
+      <header>
+        <h2 class="mb-2.5">
+          <span class="font-normal">El Valor de la</span> Colaboración
+        </h2>
+        <p class="uppercase">
+          Creemos en generar fortalezas en base a sinergias y alianzas
+        </p>
+      </header>
+
+      <blockquote class="mx-auto mt-10 px-4 md:w-5/6">
+        <p class="mb-7 font-serif text-xl italic leading-normal text-zinc-600">
+          En la intersección de los clusters, conocimientos y habilidades de
+          varios campos se combinan y generan nuevos negocios.
+        </p>
+        <footer>
+          <cite><h3 class="mb-2.5">Prof. Michael Porter</h3></cite>
+          <div class="feature-border mb-2.5 h-[11px]"></div>
+          <p>Harvard Business School</p>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="bg-white py-14">
+    <div class="cssd-container">
+      <header class="text-center">
+        <h2 class="mb-2.5">
+          <span class="font-normal">Ultimas</span> Noticias
+        </h2>
+        <p class="uppercase">
+          Aprende sobre los últimos eventos y noticias de nuestro cluster
+        </p>
+      </header>
+    </div>
+  </section>
+
+  <div>
+    <div
+      class="cssd-container grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3"
+    >
+      {
+        noticias.map(async (noticia) => (
+          <div class="rounded-lg bg-white shadow-md">
+            <div class="p-5">
+              <h3 class="mb-2.5 text-lg font-semibold">{noticia.data.title}</h3>
+              <p>{noticia.data.blurb}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
 
 <style>
   .feature-border {
