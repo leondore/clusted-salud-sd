@@ -47,8 +47,20 @@ const { pageTitle = 'Home' } = Astro.props;
           @apply text-2xl;
         }
 
+        h4 {
+          @apply text-xl;
+        }
+
+        h5 {
+          @apply text-lg;
+        }
+
         p {
-          @apply text-sm;
+          @apply text-sm leading-relaxed;
+        }
+
+        a:not(.button) {
+          @apply hover:text-accent;
         }
 
         .cssd-container {

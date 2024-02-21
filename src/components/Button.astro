@@ -12,7 +12,7 @@ const { as: Tag, intent = 'primary', ...props } = Astro.props;
 <Tag
   {...props}
   class:list={[
-    'inline-block px-5 py-2.5 text-sm font-semibold text-white',
+    'button inline-block px-5 py-2.5 text-sm font-semibold text-white',
     { 'bg-primary hover:bg-accent focus:bg-accent': intent === 'primary' },
     { 'bg-accent hover:bg-zinc-800 focus:bg-zinc-800': intent === 'accent' },
     props.class,

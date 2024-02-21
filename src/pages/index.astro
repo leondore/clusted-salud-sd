@@ -1,4 +1,8 @@
 ---
+type ImageImport = {
+  default: ImageMetadata;
+};
+
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
@@ -11,8 +15,6 @@ import iconCapacitacion from '@assets/icon-capacitacion.png';
 import iconClusters from '@assets/icon-clusters.png';
 
 const pageTitle = 'Inicio';
-const featureBorder =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATkAAAALCAYAAAAEJPrjAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjI4RTNFRURDNTYzMTFFM0FBRUZBQUY5NTk1MzQ4NjEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjI4RTNFRUVDNTYzMTFFM0FBRUZBQUY5NTk1MzQ4NjEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGMjhFM0VFQkM1NjMxMUUzQUFFRkFBRjk1OTUzNDg2MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGMjhFM0VFQ0M1NjMxMUUzQUFFRkFBRjk1OTUzNDg2MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmJ4c8MAAAB8SURBVHja7Nm7CYBAFARAzzaMxBoFIwMjwRb9JFrHibmC4i+ZKWE5llteiDEm8KRhWk4/qiLPgsR4UyoCQMnBTV3bCAElB6DkAC4I/Ti7PPD5RC2rWkB8U3Kuqzxt77q6Fd5esbmuYq4CKDkAc5Uf5+oRcxU/OYAbVgEGAMnZIDwvK/1pAAAAAElFTkSuQmCC';
 
 const noticias = await getCollection('noticias');
 ---
@@ -51,7 +53,7 @@ const noticias = await getCollection('noticias');
   </section>
 
   <section class="bg-white py-14">
-    <div class="cssd-container grid grid-cols-3 gap-10 md:gap-4">
+    <div class="cssd-container grid grid-cols-3 gap-10 md:gap-8">
       <div class="col-span-3 text-center md:col-span-1">
         <Image src={iconNosotros} alt="Sobre Nosotros" class="mx-auto mb-7" />
         <h3 class="mb-5 text-lg">Sobre Nosotros</h3>
@@ -127,18 +129,44 @@ const noticias = await getCollection('noticias');
   </section>
 
   <div>
-    <div
-      class="cssd-container grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3"
-    >
+    <div class="cssd-container grid grid-cols-3 gap-8">
       {
-        noticias.map(async (noticia) => (
-          <div class="rounded-lg bg-white shadow-md">
-            <div class="p-5">
-              <h3 class="mb-2.5 text-lg font-semibold">{noticia.data.title}</h3>
-              <p>{noticia.data.blurb}</p>
-            </div>
-          </div>
-        ))
+        noticias
+          .sort(
+            (art1, art2) =>
+              art2.data.pubDate.getTime() - art1.data.pubDate.getTime()
+          )
+          .map(async (noticia) => {
+            const image: ImageImport = await import(noticia.data.image);
+            return (
+              <article class="col-span-3 lg:col-span-1">
+                <a href={`noticias/${noticia.slug}`} class="block">
+                  <Image
+                    src={image.default}
+                    alt={noticia.data.title}
+                    class="border-4 border-solid border-sky-100"
+                  />
+                </a>
+
+                <div class="pb-2.5 pt-6">
+                  <h5 class="mb-2.5 leading-tight">
+                    <a href={`noticias/${noticia.slug}`} class="block">
+                      {noticia.data.title}
+                    </a>
+                  </h5>
+                  <p class="mb-4">{noticia.data.blurb}</p>
+                </div>
+
+                <Button
+                  as="a"
+                  href={`noticias/${noticia.slug}`}
+                  intent="primary"
+                >
+                  Leer Mas
+                </Button>
+              </article>
+            );
+          })
       }
     </div>
   </div>
