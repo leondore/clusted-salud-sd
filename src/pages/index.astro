@@ -137,7 +137,9 @@ const noticias = await getCollection('noticias');
               art2.data.pubDate.getTime() - art1.data.pubDate.getTime()
           )
           .map(async (noticia) => {
-            const image: ImageImport = await import(noticia.data.image);
+            const image: ImageImport = await import(
+              /* @vite-ignore */ noticia.data.image
+            );
             return (
               <article class="col-span-3 lg:col-span-1">
                 <a href={`noticias/${noticia.slug}`} class="block">
