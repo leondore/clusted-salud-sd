@@ -8,11 +8,12 @@ import '@fontsource-variable/raleway';
 import '@fontsource-variable/lora/wght-italic.css';
 
 import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
 
 const { pageTitle = 'Home' } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -55,11 +56,15 @@ const { pageTitle = 'Home' } = Astro.props;
           @apply text-lg;
         }
 
+        h6 {
+          @apply text-base;
+        }
+
         p {
           @apply text-sm leading-relaxed;
         }
 
-        a:not(.button) {
+        a:not(.button, .menu-item) {
           @apply hover:text-accent;
         }
 
@@ -76,5 +81,40 @@ const { pageTitle = 'Home' } = Astro.props;
     <main class="relative">
       <slot />
     </main>
+
+    <Footer />
+
+    <a
+      href="#top"
+      id="scroll-top"
+      class="fixed bottom-14 right-5 z-50 hidden h-10 w-10 items-center justify-center rounded-full bg-primary opacity-0 shadow-md transition-opacity sm:flex"
+    >
+      <!--?xml version="1.0" ?-->
+      <svg
+        viewBox="0 0 256 256"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-3/4"
+        ><rect fill="none" height="256" width="256"></rect><polyline
+          fill="none"
+          points="48 160 128 80 208 160"
+          stroke="#ffffff"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="16"></polyline></svg
+      >
+    </a>
   </body>
 </html>
+
+<script>
+  document.onscroll = () => {
+    const scrollToTop = document.getElementById('scroll-top');
+    if (!scrollToTop) return;
+
+    if (window.scrollY > 100) {
+      scrollToTop.classList.add('opacity-100');
+    } else {
+      scrollToTop.classList.remove('opacity-100');
+    }
+  };
+</script>

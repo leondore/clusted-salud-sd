@@ -8,14 +8,16 @@ import { getCollection } from 'astro:content';
 
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Button from '@components/Button.astro';
+import FigureImg from '@components/FigureImg.astro';
 
 import hero from '@assets/cssd-banner.jpg';
 import iconNosotros from '@assets/icon-nosotros.png';
 import iconCapacitacion from '@assets/icon-capacitacion.png';
 import iconClusters from '@assets/icon-clusters.png';
+import sanNicolas from '@assets/san-nicolas-bari.jpg';
+import bandera from '@assets/bandera-dominicana.jpg';
 
 const pageTitle = 'Inicio';
-
 const noticias = await getCollection('noticias');
 ---
 
@@ -92,7 +94,7 @@ const noticias = await getCollection('noticias');
 
   <section class="bg-zinc-100 py-14 text-center">
     <div class="cssd-container">
-      <header>
+      <header class="mb-10">
         <h2 class="mb-2.5">
           <span class="font-normal">El Valor de la</span> Colaboración
         </h2>
@@ -101,7 +103,7 @@ const noticias = await getCollection('noticias');
         </p>
       </header>
 
-      <blockquote class="mx-auto mt-10 px-4 md:w-5/6">
+      <blockquote class="mx-auto px-4 md:w-5/6">
         <p class="mb-7 font-serif text-xl italic leading-normal text-zinc-600">
           En la intersección de los clusters, conocimientos y habilidades de
           varios campos se combinan y generan nuevos negocios.
@@ -117,7 +119,7 @@ const noticias = await getCollection('noticias');
 
   <section class="bg-white py-14">
     <div class="cssd-container">
-      <header class="text-center">
+      <header class="mb-10 text-center">
         <h2 class="mb-2.5">
           <span class="font-normal">Ultimas</span> Noticias
         </h2>
@@ -125,53 +127,151 @@ const noticias = await getCollection('noticias');
           Aprende sobre los últimos eventos y noticias de nuestro cluster
         </p>
       </header>
+
+      <div class="grid grid-cols-3 gap-8">
+        {
+          noticias
+            .sort(
+              (art1, art2) =>
+                art2.data.pubDate.getTime() - art1.data.pubDate.getTime()
+            )
+            .map(async (noticia) => {
+              const image: ImageImport = await import(
+                /* @vite-ignore */ noticia.data.image
+              );
+              return (
+                <article class="col-span-3 lg:col-span-1">
+                  <a href={`noticias/${noticia.slug}`} class="block">
+                    <FigureImg image={image.default} alt={noticia.data.title} />
+                  </a>
+
+                  <div class="pb-2.5 pt-6">
+                    <h5 class="mb-2.5 leading-tight">
+                      <a href={`noticias/${noticia.slug}`} class="block">
+                        {noticia.data.title}
+                      </a>
+                    </h5>
+                    <p class="mb-4">{noticia.data.blurb}</p>
+                  </div>
+
+                  <Button
+                    as="a"
+                    href={`noticias/${noticia.slug}`}
+                    intent="primary"
+                  >
+                    Leer Mas
+                  </Button>
+                </article>
+              );
+            })
+        }
+      </div>
     </div>
   </section>
 
-  <div>
-    <div class="cssd-container grid grid-cols-3 gap-8">
-      {
-        noticias
-          .sort(
-            (art1, art2) =>
-              art2.data.pubDate.getTime() - art1.data.pubDate.getTime()
-          )
-          .map(async (noticia) => {
-            const image: ImageImport = await import(
-              /* @vite-ignore */ noticia.data.image
-            );
-            return (
-              <article class="col-span-3 lg:col-span-1">
-                <a href={`noticias/${noticia.slug}`} class="block">
-                  <Image
-                    src={image.default}
-                    alt={noticia.data.title}
-                    class="border-4 border-solid border-sky-100"
-                  />
-                </a>
+  <section class="bg-zinc-100 py-14">
+    <div class="cssd-container">
+      <header class="mb-10 text-center">
+        <h2 class="mb-2.5">
+          <span class="font-normal">Hospital</span> San Nicolás de Bari
+        </h2>
+        <p class="uppercase">
+          Una breve historia de la medicina en República Dominicana
+        </p>
+      </header>
 
-                <div class="pb-2.5 pt-6">
-                  <h5 class="mb-2.5 leading-tight">
-                    <a href={`noticias/${noticia.slug}`} class="block">
-                      {noticia.data.title}
-                    </a>
-                  </h5>
-                  <p class="mb-4">{noticia.data.blurb}</p>
-                </div>
+      <div>
+        <FigureImg
+          image={sanNicolas}
+          align="left"
+          caption="Fotografía del Hospital San Nicolás de Bari"
+          class="md:w-96"
+        />
+        <p class="mb-6">
+          El Hospital San Nicolás de Bari fue el primer hospital de América. Se
+          construyó de 1503 en Santo Domingo de Guzmán, capital de La
+          Hispaniola, actual República Dominicana. Fue fundado por Nicolás de
+          Ovando, quien en ese entonces fuera gobernador de la isla. Junto con
+          la Catedral de Santa María la Menor, fundada en 1512 y la Universidad
+          Autónoma de Santo Domingo, (fundada en 1538) constituye una de las
+          tres primicias del Nuevo Mundo en la isla de Santo Domingo, lo cual ha
+          hecho que la Zona Colonial dominicana haya sido declarada patrimonio
+          de la humanidad por la UNESCO. En principio consistía de tres naves,
+          de las cuales, la primera y la última estaban dedicadas a la atención
+          de enfermos y la central era una capilla. Ya para 1552, el gobernador
+          terminó la construcción, sin embargo, los recurrentes huracanes y
+          sismos típicos de la isla arrasaron con la edificación.
+        </p>
+        <p class="mb-6">
+          Hoy en día sólo se conservan las ruinas de lo que fue el primer
+          hospital construido en América. Además de dos espacios dedicados al
+          culto, de la capilla original del hospital que se hallan integrados a
+          los espacios de la iglesia de Nuestra Señora de La Altagracia,
+          levantada por el ingeniero Oswaldo Báez, en la primera mitad del siglo
+          XX, sobre una parte del solar en donde se levantó el hospital. El
+          hospital se inició en 1503, con dinero aportado por el mismo
+          gobernador Ovando, así como de otros funcionarios de su gobierno. El
+          hospital original, cuya primera etapa de construcción constituyó
+          apenas el núcleo original del edificio, fue continuado en 1519, con el
+          dinero aportado por las limosnas de los vecinos. La tercera etapa de
+          la construcción, se inició hacia 1533 y finalizó hacia 1552. Los
+          fondos provinieron en parte de los vecinos y de una donación de la
+          iglesia debido a que el hospital quedó bajo la incorporación del
+          Hospital del Espíritu Santo de Roma.
+        </p>
+        <FigureImg
+          image={bandera}
+          align="right"
+          caption="Bandera de la República Dominicana"
+          class="md:w-96"
+        />
+        <p class="mb-6">
+          El hospital se desarrolló alrededor de la capilla inicial, dedicada a
+          Nuestra Señora de la Concepción, advocación que retomó luego la
+          catedral. El hospital tenía cupo para sesenta enfermos, ingresados.
+          Este edificio fue uno de los motivos por el que se consideró a Santo
+          Domingo a la altura de Florencia y Barcelona, a mediados del siglo
+          XVI. El hospital no solo tuvo una planta muy desarrollada sino que su
+          altura fue de carácter monumental; de hecho cuando la edificación
+          comenzó a peligrar, fue su altura lo que exigió la demolición, para
+          evitar que en su caída, dañara las construcciones a su alrededor.
+        </p>
+        <p class="mb-6">
+          El desarrollo de la construcción en el tiempo, es lo que permite hoy
+          apreciar los distintos elementos estilísticos que lo constituyeron.
+          Primero los materiales con que fue levantado, desde la piedra de
+          sillería, la mampostería de ladrillo y el uso del ladrillo en hiladas,
+          reforzados con piedra en las esquinas y terminales. Los arcos ojivales
+          que corresponden al período gótico, se entremezclan con las arcadas de
+          medio punto del románico anterior y luego del renacimiento. Asimismo,
+          se observan arcos rebajados en los grandes salones del hospital.
+        </p>
+      </div>
 
-                <Button
-                  as="a"
-                  href={`noticias/${noticia.slug}`}
-                  intent="primary"
-                >
-                  Leer Mas
-                </Button>
-              </article>
-            );
-          })
-      }
+      <div
+        class="border-l-4 border-solid border-sky-300 bg-zinc-50 py-5 pl-7 pr-5 font-serif italic"
+      >
+        <h6 class="mb-2">Fuentes:</h6>
+        <ul class="list-disc space-y-2 pl-6">
+          <li>
+            Hospital San Nicolás de Bari - Wikipedia, la enciclopedia libre (<a
+              href="http://web.archive.org/web/20230411010222/https://es.wikipedia.org/wiki/Hospital_San_Nicol%C3%A1s_de_Bari"
+              class="font-medium"
+              target="_blank">Ir a fuente</a
+            >)
+          </li>
+          <li>
+            San Nicolás de Bari fue el primer hospital de América | Listín
+            Diario (<a
+              href="http://web.archive.org/web/20230411010222/http://www.listindiario.com/la-vida/2008/10/22/78353/San-Nicolas-de-Bari-fue-el-primer-hospital-de-America"
+              class="font-medium"
+              target="_blank">Ir a fuente</a
+            >)
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </section>
 </BaseLayout>
 
 <style>

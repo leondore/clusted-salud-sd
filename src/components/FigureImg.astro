@@ -1,0 +1,46 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+import { Image } from 'astro:assets';
+
+interface Props extends HTMLAttributes<'figure'> {
+  image: ImageMetadata;
+  alt?: string;
+  align?: 'left' | 'right';
+  caption?: string;
+}
+
+const { image, alt, caption = '', align, ...props } = Astro.props;
+
+const { class: className, ...rest } = props;
+const altText = alt || caption || '';
+---
+
+<figure
+  {...rest}
+  class:list={[
+    'text-center',
+    {
+      'mb-4 md:float-right md:ml-5 md:border-l md:border-solid md:border-sky-300 md:pl-5':
+        align === 'left',
+    },
+    {
+      'mb-4 md:float-left md:mr-5 md:border-r md:border-solid md:border-sky-300 md:pr-5':
+        align === 'right',
+    },
+    className,
+  ]}
+>
+  <Image
+    src={image}
+    alt={altText}
+    class="inline-block border-4 border-solid border-sky-100"
+  />
+  {
+    caption && (
+      <figcaption class="mt-1 text-center text-xs leading-normal text-zinc-500">
+        {caption}
+      </figcaption>
+    )
+  }
+</figure>
