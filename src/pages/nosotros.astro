@@ -1,18 +1,19 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
+import PageLayout from '@layouts/PageLayout.astro';
+import InfoBox from '@components/InfoBox.astro';
+
 const pageTitle = 'Sobre Nosotros';
 ---
 
-<BaseLayout pageTitle={pageTitle}>
-  <h1>Sobre Nosotros</h1>
-  <h2>Sobre el Clúster de Salud de Santo Domingo (www.ClusterSaludSD.org)</h2>
-  <blockquote>
-    <p>
-      En la intersección de los clúster, conocimientos y habilidades de varios
-      campos se combinan y generan nuevos negocios.
-    </p>
-    <footer>Prof. Michael Porter</footer>
-  </blockquote>
+<PageLayout pageTitle={pageTitle}>
+  <h4>Sobre el Clúster de Salud de Santo Domingo (www.ClusterSaludSD.org)</h4>
+
+  <InfoBox color="blue">
+    En la intersección de los clúster, conocimientos y habilidades de varios
+    campos se combinan y generan nuevos negocios.<br /><em
+      >Prof. Michael Porter</em
+    >
+  </InfoBox>
 
   <p>
     Objetivo del Clúster de Salud Santo Domingo: Crear sinergias optimizando la
@@ -20,6 +21,7 @@ const pageTitle = 'Sobre Nosotros';
     Santo Domingo. El Valor de la Colaboración: CREEMOS EN GENERAR FORTALEZAS EN
     BASE A SINERGIAS Y ALIANZAS
   </p>
+
   <p>
     El concepto de los clústers fue detallado por primera vez por el Profesor
     Michael Porter a principios de la década de los 90, describiéndolos como
@@ -30,21 +32,17 @@ const pageTitle = 'Sobre Nosotros';
     ciertos sectores del comercio mundial y fortaleciendo la competitividad.
   </p>
 
-  <h2>Sobre la Clusterizacion en Salud (primer Ejercicio del Cluster)</h2>
-  <blockquote
-    cite="http://chtmagazine.com/edicion-13/sinergia-escala-y-competitividad/"
-  >
-    <p>
-      <strong>Sinergia, escala y competitividad</strong> Dr. Amado Alejandro Báez
-      MSc, MPH, FAAEM y FCCM
-    </p>
-    <footer>
-      <a
-        href="http://chtmagazine.com/edicion-13/sinergia-escala-y-competitividad/"
-        >http://chtmagazine.com/edicion-13/sinergia-escala-y-competitividad/</a
-      >
-    </footer>
-  </blockquote>
+  <h4>Sobre la Clusterizacion en Salud (primer Ejercicio del Cluster)</h4>
+
+  <InfoBox color="blue">
+    <strong>Sinergia, escala y competitividad</strong> Dr. Amado Alejandro Báez MSc,
+    MPH, FAAEM y FCCM<br />
+    <a
+      href="http://web.archive.org/web/20230401005559/http://chtmagazine.com/edicion-13/sinergia-escala-y-competitividad/"
+      class="text-zinc-700"
+      >http://chtmagazine.com/edicion-13/sinergia-escala-y-competitividad/</a
+    >
+  </InfoBox>
 
   <p>
     Proponemos una arquitectura básica para la creación del Clúster Salud de
@@ -58,4 +56,4 @@ const pageTitle = 'Sobre Nosotros';
     de forma específica, para su inclusión en este esquema propuesto y así sumar
     y generar más alianzas y colaboraciones.
   </p>
-</BaseLayout>
+</PageLayout>

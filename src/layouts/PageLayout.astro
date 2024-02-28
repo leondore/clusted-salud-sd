@@ -1,0 +1,54 @@
+---
+interface Props {
+  pageTitle: string;
+  bannerImage?: string;
+  children: any;
+}
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const { pageTitle = 'Home', bannerImage = '/src/assets/page-banner.jpg' } =
+  Astro.props;
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <div
+    class="h-44 bg-cover bg-top bg-no-repeat"
+    style=`background-image: url(${bannerImage})`
+  >
+    <span class="sr-only">Banner para la pagina {pageTitle}</span>
+  </div>
+
+  <div class="py-6">
+    <div class="cssd-container flex flex-col gap-4 sm:flex-row sm:items-center">
+      <h1 class="text-3xl font-normal">{pageTitle}</h1>
+      <nav>
+        <ul class="flex items-center text-sm">
+          <li class="flex items-center">
+            <a href="/" class="menu-item hover:underline">Inicio</a>
+            <span
+              class="block h-2.5 w-6 bg-[url('/src/assets/breadcrumbs-divider.png')] bg-center bg-no-repeat"
+            ></span>
+          </li>
+          <li class="text-accent">{pageTitle}</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="bg-zinc-100 py-12">
+    <div class="cssd-container page-content">
+      <slot />
+    </div>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  .page-content > h4 {
+    @apply mb-5;
+  }
+
+  .page-content > p {
+    @apply mb-6;
+  }
+</style>
