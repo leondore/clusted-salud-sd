@@ -1,0 +1,87 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import InfoBox from '@components/InfoBox.astro';
+import FigureImg from '@components/FigureImg.astro';
+
+import baezPorter from '@assets/Shutterfly_Share_19.jpg';
+
+const pageTitle = 'Sobre Los Clusters';
+---
+
+<PageLayout pageTitle={pageTitle}>
+  <InfoBox color="red" quote>
+    <div class="font-semibold">
+      Mi primera experiencia con el concepto de clúster surgió en el 2008
+      mientras completaba un seminario con el Profesor Michael Porter en el
+      Harvard Business School. Porter exponía que hoy las organizaciones en
+      todas las esferas deben competir para ofrecer valor (no solo reducir
+      costos), generando así a través de este valor la capacidad de cumplir o
+      exceder las necesidades de los clientes, entregando un aporte social con
+      altos beneficios por cada dólar gastado, de esta forma la clusterización
+      optimiza esta cadena de valor, y en temas de salud creando escalas y
+      sinergias contribuye a generar un verdadero modelo gerencial centrado en
+      el paciente.
+    </div>
+    <div class="mt-3">Dr. Alejandro Báez, Presidente CGHIM</div>
+  </InfoBox>
+
+  <FigureImg
+    image={baezPorter}
+    align="right"
+    caption="Prof. Michael Porter y Dr. Alejandro Baez / Harvard Business School 2008"
+    class="md:w-96"
+  />
+
+  <p>
+    El concepto de los clústers fue detallado por primera vez por el Profesor
+    Michael Porter a principios de la década de los 90, describiéndolos como
+    concentraciones geográficas de empresas e instituciones interconectadas en
+    un campo particular y como una herramienta para analizar de una forma
+    integral factores que permiten a una industria específica incorporar nuevos
+    eslabones en su cadena productiva, generando así ventajas comparativas en
+    ciertos sectores del comercio mundial y fortaleciendo la competitividad. El
+    profesor Porter afirma que los clústeres tienen el potencial de afectar a la
+    competencia de cinco maneras:
+  </p>
+
+  <ol>
+    <li>Aumento de la productividad</li>
+    <li>Impulsar la innovación</li>
+    <li>Estimular nuevas empresas</li>
+    <li>Reproducir comportamientos y oportunidades aprendidas</li>
+    <li>Ejercer presión para la cooperación inter-institucional</li>
+    <li>Experiencia con la Clusterización</li>
+  </ol>
+
+  <p>
+    A principios de la década del 2000 en República Dominicana se inician
+    trabajos guiados hacia fortalecer la competitividad en áreas asociadas al
+    sector turístico, desarrollándose desde aquí esfuerzos coligados a la
+    generación de grupos o clústeres siendo una de las líneas de acción del
+    Consejo Nacional de Competitividad (CNC):
+  </p>
+
+  <p>
+    El Consejo Nacional de Competitividad (CNC), fue fundado el 03 de diciembre
+    del año 2001, mediante el Decreto 1091-01, por la necesidad de Establecer un
+    marco de gestión ágil y efectivo, en consonancia con las buenas prácticas
+    internacionales para hacer frente a las dinámicas de un mundo globalizado y
+    de fuerte competencia. Esto con el objetivo de Formular, implementar y
+    desarrollar las estrategias competitivas de los sectores productivos vitales
+    de la economía del país, con el fin de estructurar una política nacional
+    para enfrentar los retos de la globalización y la apertura comercial.
+  </p>
+
+  <p>
+    La experiencia del CNC con el desarrollo e impacto de los clúster en
+    República Dominicana ha sido contundente, extremadamente positiva y digna de
+    emanar y reproducir dentro del sector salud.
+  </p>
+
+  <p>
+    <a
+      href="http://adtusalud.org/colaboracion-y-competitividad-sobre-los-clusters-de-turismo-salud/"
+      target="_blank"
+      >Colaboración y Competitividad: Sobre los Clústers de Turismo Salud</a>
+  </p>
+</PageLayout>

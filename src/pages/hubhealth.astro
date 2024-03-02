@@ -1,0 +1,70 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import InfoBox from '@components/InfoBox.astro';
+import FigureImg from '@components/FigureImg.astro';
+
+import presentacion from '@assets/hubhealth.jpg';
+
+const pageTitle = 'HUBHealth';
+---
+
+<PageLayout pageTitle={pageTitle}>
+  <h4>#HUBHealth: Foro Comercial del CSSD</h4>
+
+  <InfoBox color="blue">
+    Atraves de una alianza estrategica con la Camara de Comercio y Prodcuccion
+    de Santo Domingo. #HUBHealth se convierte desde el 2015 en el brazo de
+    "Feria Comerical" de nuestros Cluster de Salud . El enfoque siempre dirigido
+    a la Innovación y tecnología y competitividad como jees fundamentales
+  </InfoBox>
+
+  <p>
+    Innovación y tecnología son términos frecuentemente usados de forma
+    conjunta, pero con importantes diferencias fundamentales. La tecnología no
+    es el único factor que determina la competitividad, pero existen importantes
+    ventajas competitivas que derivan hoy del conocimiento científico convertido
+    en tecnologías. En este caso, la innovación fundamentalmente se trata de la
+    búsqueda de una competitividad, integrando herramientas tecnológicas así
+    como también procesos y esfuerzos no necesariamente de índole tecnológica.
+  </p>
+
+  <p>
+    En el entorno actual, las empresa de salud están obligada a desarrollar
+    procesos operacionales, recursos humanos, sistemas de información y
+    capacidades tecnológicas acordes con los nuevos desafíos. De ahí la
+    importancia que tiene el proceso de innovación. Pues esto implica la
+    renovación y ampliación de procesos, productos y servicios, cambios en la
+    organización y la gestión y cambios en las calificaciones del capital
+    humano.
+  </p>
+
+  <p>
+    La innovación tiene como objetivo explotar las oportunidades que ofrecen los
+    cambios, lo que obliga que sea fundamental en la generación de una cultura
+    innovadora que permita a la empresa ser capaz de adaptarse a las nuevas
+    situaciones y exigencias del mercado en que compite.
+  </p>
+
+  <p>
+    La actitud innovadora es una forma de actuación capaz de desarrollar valores
+    y actitudes que impulsen ideas y cambios que impliquen mejoras en la
+    eficiencia de la empresa, aunque suponga una ruptura con lo tradicional.
+  </p>
+
+  <p>
+    En la actualidad el aporte de la tecnología es imprescindible en lo que
+    respecta a la medicina. Donde necesariamente existir una interrelación entre
+    la calidad de la atención y tecnología. El gran reto esta en la inversión
+    tecnológica contrastada con el desarrollo exponencial de tecnologías
+    constantemente actualizándose dejando otras como obsoletas.
+  </p>
+
+  <h4>Descargar presentacion:</h4>
+  <a href="/HUBHEALTH19_FULL.pdf" download>
+    <FigureImg
+      image={presentacion}
+      alt="Descarga la presentacion"
+      class="max-w-sm !text-left"
+    />
+  </a>
+</PageLayout>

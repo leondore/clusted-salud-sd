@@ -1,6 +1,13 @@
 ---
+import { Image } from 'astro:assets';
 import PageLayout from '@layouts/PageLayout.astro';
 import InfoBox from '@components/InfoBox.astro';
+import FigureImg from '@components/FigureImg.astro';
+
+import asonahores from '@assets/asonahores-logo.png';
+import isqua from '@assets/ISQua_Final_Logo_landscape2.png';
+import ibms from '@assets/ibms-logo.png';
+import presentacion from '@assets/noticias/ClusterSaludSD.jpg';
 
 const pageTitle = 'Sobre Nosotros';
 ---
@@ -56,4 +63,51 @@ const pageTitle = 'Sobre Nosotros';
     de forma específica, para su inclusión en este esquema propuesto y así sumar
     y generar más alianzas y colaboraciones.
   </p>
+
+  <div class="grid grid-cols-12 gap-8">
+    <div class="col-span-12 lg:col-span-7">
+      <h4 class="mb-5">Miembros de:</h4>
+      <div class="grid grid-cols-2 gap-8">
+        <div class="col-span-2 md:col-span-1">
+          <a href="https://www.asonahores.com/" target="_blank">
+            <Image
+              src={asonahores}
+              alt="Logo de Asonahores"
+              class="max-w-sm md:max-w-full"
+            />
+          </a>
+        </div>
+
+        <div class="col-span-2 md:col-span-1">
+          <a href="https://www.isqua.org/" target="_blank">
+            <Image
+              src={isqua}
+              alt="Logo de ISQua"
+              class="max-w-sm md:max-w-full"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-12 lg:col-span-5">
+      <h4 class="mb-5">Representantes nacionales del:</h4>
+      <div class="grid grid-cols-2 gap-8">
+        <div class="col-span-2 md:col-span-1">
+          <a href="https://www.ibms.us/" target="_blank">
+            <Image src={ibms} alt="Logo de IBMS" class="w-28" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h4>Descargar presentacion:</h4>
+  <a href="/ClusterSaludSD.org.pdf" download>
+    <FigureImg
+      image={presentacion}
+      alt="Descarga la presentacion"
+      class="max-w-sm !text-left"
+    />
+  </a>
 </PageLayout>

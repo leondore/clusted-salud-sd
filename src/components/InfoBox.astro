@@ -1,18 +1,34 @@
 ---
 interface Props {
   color?: 'blue' | 'red';
+  quote?: boolean;
   children: any;
 }
 
-const { color = 'blue' } = Astro.props;
+const { color = 'blue', quote = false } = Astro.props;
 ---
 
 <div
   class:list={[
     'mb-6 border-l-4 border-solid px-6 py-5 text-sm leading-6',
     { 'border-sky-200 bg-sky-100 text-sky-700': color === 'blue' },
-    { 'border-rose-200 bg-rose-100 text-rose-700': color === 'red' },
+    { 'border-accent bg-accent text-white': color === 'red' },
+    { 'is-quote bg-[18px_25px] bg-no-repeat pl-16': quote },
   ]}
 >
-  <slot />
+  <div
+    class:list={[
+      { 'border-sky-200': color === 'blue' },
+      { 'border-red-400': color === 'red' },
+      { 'border-l border-solid pl-5': quote },
+    ]}
+  >
+    <slot />
+  </div>
 </div>
+
+<style>
+  .is-quote {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAWCAYAAAA1vze2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OERBRDNFMUZENzkxMTFFMzk3OUU4NUM0ODM3NTdFNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OERBRDNFMjBENzkxMTFFMzk3OUU4NUM0ODM3NTdFNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4REFEM0UxREQ3OTExMUUzOTc5RTg1QzQ4Mzc1N0U0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4REFEM0UxRUQ3OTExMUUzOTc5RTg1QzQ4Mzc1N0U0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PoFvi78AAAE4SURBVHjaYvxSU/2fgTjwEYgFkPgfgJifGI1MDHQAo5aMWjJqySCxhAWIGbGISwDxTSDmQxLbhqYGXMRwN7fABb7W1oCKmdtALIqkbjsunzSjWfAdiCuIcHQNmgV/gLgYmyX6QJyIJtYLxI/wmQ70hTKQykUTng706XVslvQBMTMS/xkQdxLhiy4gZkfivwfiRmwRHwDETmhi1UD8hYAvHIBUEJpwE9AXb9EtYYO6BhmcBeJFBCxggvoeGdwC4qnYknAOEKuiKS4C4n8EgikBiA3RxEqBvviNbokIENeiKVwDxIcIWMADxK1oYnuAFmzClhkb0KrWn0BcRkRkV0DzFAz8hfoeI8drA3E6mvhEIL5PwAJ5UB5AE5sL9MVlbJb0QnM+DLzCEgTYAChZcyDxP2EJcjAACDAAOSI+uCDXeaYAAAAASUVORK5CYII=');
+  }
+</style>
