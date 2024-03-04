@@ -1,14 +1,71 @@
 ---
+import type { IAlert } from '../types';
+
+import sendGrid, { type MailDataRequired } from '@sendgrid/mail';
 import PageLayout from '@layouts/PageLayout.astro';
 import Button from '@components/Button.astro';
 import SvgImg from '@components/SvgImg.astro';
+import Alert from '@components/Alert.astro';
 
 export const prerender = false;
 
 const pageTitle = 'Contáctanos';
+
+const alert: IAlert = {
+  type: 'success',
+  message:
+    'Tu mensaje fue enviado correctamente. Te responderemos a la brevedad.',
+  show: false,
+};
+
+if (Astro.request.method === 'POST') {
+  try {
+    sendGrid.setApiKey(import.meta.env.SENDGRID_API_KEY);
+
+    const data = await Astro.request.formData();
+    const [name, email, phone, message] = data.values();
+
+    if (!name) {
+      throw new Error('Debes introducir un nombre');
+    }
+    if (!email) {
+      throw new Error('Debes introducir tu dirección de email');
+    }
+
+    const emailBody = `Nombre: ${name}\nEmail: ${email}\nTeléfono: ${phone}\n\nMensaje: ${message}`;
+
+    const msg: MailDataRequired = {
+      to: 'leon.dore@gmail.com',
+      from: {
+        name: 'Cluster de Salud Santo Domingo',
+        email: 'hello@leon.ninja',
+      },
+      subject: 'Cluster de Salud Santo Domingo: New contact form submission',
+      text: emailBody,
+    };
+
+    await sendGrid.send(msg);
+    alert.show = true;
+  } catch (error) {
+    let errorMessage =
+      'Ocurrió un error al enviar tu mensaje. Por favor, intenta de nuevo.';
+
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+
+    alert.type = 'error';
+    alert.message = errorMessage;
+    alert.show = true;
+  }
+}
 ---
 
 <PageLayout pageTitle={pageTitle}>
+  <Alert intent={alert.type} show={alert.show} className="mb-6">
+    {alert.message}
+  </Alert>
+
   <h2>Contáctanos</h2>
   <p>Envianos un mensaje, responderemos a la brevedad.</p>
 
@@ -18,7 +75,7 @@ const pageTitle = 'Contáctanos';
       method="POST"
       class="col-span-2 border-b border-solid border-zinc-300 pb-7 md:col-span-1 md:border-0 md:pb-0"
     >
-      <input type="text" name="name" placeholder="Nombre" required />
+      <input type="text" name="name" placeholder="Nombre" />
       <input
         type="email"
         name="email"
