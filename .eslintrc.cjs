@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['plugin:astro/recommended', 'plugin:astro/jsx-a11y-recommended'],
+  extends: ['plugin:astro/recommended', 'plugin:jsx-a11y/recommended'],
   overrides: [
     {
       files: ['*.astro'],

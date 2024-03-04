@@ -75,15 +75,27 @@ if (Astro.request.method === 'POST') {
       method="POST"
       class="col-span-2 border-b border-solid border-zinc-300 pb-7 md:col-span-1 md:border-0 md:pb-0"
     >
-      <input type="text" name="name" placeholder="Nombre" required />
+      <label class="block">
+        <span class="sr-only">Nombre</span>
+        <input type="text" name="name" placeholder="Nombre" required />
+      </label>
+
       <input
         type="email"
         name="email"
         placeholder="Dirección de Email"
         required
       />
-      <input type="tel" name="phone" placeholder="Número de teléfono" />
-      <textarea name="message" placeholder="Mensaje" rows="2"></textarea>
+
+      <label class="block">
+        <span class="sr-only">Número de teléfono</span>
+        <input type="tel" name="phone" placeholder="Número de teléfono" />
+      </label>
+
+      <label class="block">
+        <span class="sr-only">Mensaje</span>
+        <textarea name="message" placeholder="Mensaje" rows="2"></textarea>
+      </label>
 
       <div class="text-right">
         <Button as="button" intent="primary" type="submit" class="px-7 py-4">
