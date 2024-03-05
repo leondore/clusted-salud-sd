@@ -13,5 +13,7 @@ export default defineConfig({
       entrypoint: '/src/alpine',
     }),
   ],
-  adapter: vercel(),
+  adapter: vercel({
+    imageService: true,
+  }),
 });
