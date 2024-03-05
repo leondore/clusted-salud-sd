@@ -177,13 +177,28 @@ const reCaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY;
   }
 </style>
 
-<script src="https://www.google.com/recaptcha/api.js"></script>
-<script>
-  function onSubmit(token: any) {
-    const form = document.getElementById(
-      'contact-form'
-    ) as HTMLFormElement | null;
-    if (!form) return;
-    form.submit();
+<script is:inline src="https://www.google.com/recaptcha/api.js"></script>
+<script is:inline>
+  async function onSubmit(token) {
+    try {
+      const response = await fetch('/recaptcha', {
+        method: 'POST',
+        body: JSON.stringify({ recaptcha: token }),
+      });
+      if (!response.ok) {
+        throw new Error('Error al enviar el formulario');
+      }
+
+      const data = await response.json();
+      if (!data.success) {
+        throw new Error('Error al enviar el formulario');
+      }
+
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+      form.submit();
+    } catch (error) {
+      console.error(error.message);
+    }
   }
 </script>
