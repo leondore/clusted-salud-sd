@@ -1,8 +1,8 @@
 /* empty css                             */
-import { A as AstroError, c as InvalidImageService, d as ExpectedImageOptions, E as ExpectedImage, F as FailedToFetchRemoteImageDimensions, e as createAstro, f as createComponent, g as ImageMissingAlt, r as renderTemplate, m as maybeRenderHead, h as addAttribute, s as spreadAttributes, i as renderComponent, u as unescapeHTML, j as Fragment, k as renderHead, l as renderSlot } from '../astro_uNdN2VWs.mjs';
+import { A as AstroError, c as InvalidImageService, d as ExpectedImageOptions, E as ExpectedImage, F as FailedToFetchRemoteImageDimensions, e as createAstro, f as createComponent, g as ImageMissingAlt, r as renderTemplate, m as maybeRenderHead, h as addAttribute, s as spreadAttributes, i as renderComponent, u as unescapeHTML, j as Fragment, k as renderHead, l as renderSlot } from '../astro_DAAgWhNY.mjs';
 import sendGrid from '@sendgrid/mail';
 /* empty css                             */
-import { i as isRemoteImage, a as isESMImportedImage, b as isLocalService, D as DEFAULT_HASH_PROPS } from '../astro/assets-service_Dy8oiIsF.mjs';
+import { i as isRemoteImage, a as isESMImportedImage, b as isLocalService, D as DEFAULT_HASH_PROPS } from '../astro/assets-service_Ry43u4vM.mjs';
 /* empty css                             */
 /* empty css                             */
 
@@ -822,7 +822,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      '../astro/assets-service_Dy8oiIsF.mjs'
+      '../astro/assets-service_Ry43u4vM.mjs'
     ).then(n => n.g).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -929,7 +929,7 @@ const $$Image = createComponent(async ($$result, $$props, $$slots) => {
     additionalAttributes.srcset = image.srcSet.attribute;
   }
   return renderTemplate`${maybeRenderHead()}<img${addAttribute(image.src, "src")}${spreadAttributes(additionalAttributes)}${spreadAttributes(image.attributes)}>`;
-}, "/home/ldore/projects/cluster-salud-sd/node_modules/.pnpm/astro@4.4.0_typescript@5.3.2/node_modules/astro/components/Image.astro", void 0);
+}, "/home/ldore/projects/cluster-salud-sd/node_modules/.pnpm/astro@4.4.11_typescript@5.3.2/node_modules/astro/components/Image.astro", void 0);
 
 const $$Astro$8 = createAstro();
 const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
@@ -969,10 +969,11 @@ const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
     const srcsetAttribute = props.densities || !props.densities && !props.widths ? `${image.src}${image.srcSet.values.length > 0 ? ", " + image.srcSet.attribute : ""}` : image.srcSet.attribute;
     return renderTemplate`<source${addAttribute(srcsetAttribute, "srcset")}${addAttribute("image/" + image.options.format, "type")}${spreadAttributes(sourceAdditionalAttributes)}>`;
   })} <img${addAttribute(fallbackImage.src, "src")}${spreadAttributes(imgAdditionalAttributes)}${spreadAttributes(fallbackImage.attributes)}> </picture>`;
-}, "/home/ldore/projects/cluster-salud-sd/node_modules/.pnpm/astro@4.4.0_typescript@5.3.2/node_modules/astro/components/Picture.astro", void 0);
+}, "/home/ldore/projects/cluster-salud-sd/node_modules/.pnpm/astro@4.4.11_typescript@5.3.2/node_modules/astro/components/Picture.astro", void 0);
 
 const imageConfig = {"service":{"entrypoint":"astro/assets/services/sharp","config":{}},"domains":[],"remotePatterns":[]};
-					new URL("file:///home/ldore/projects/cluster-salud-sd/.vercel/output/static/");
+					const outDir = new URL("file:///home/ldore/projects/cluster-salud-sd/.vercel/output/static/");
+					new URL("_astro", outDir);
 					const getImage = async (options) => await getImage$1(options, imageConfig);
 
 const $$Astro$7 = createAstro();
@@ -1092,7 +1093,7 @@ const $$Astro$3 = createAstro();
 const $$PageLayout = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
   Astro2.self = $$PageLayout;
-  const { pageTitle = "Home", bannerImage = "/src/assets/page-banner.jpg" } = Astro2.props;
+  const { pageTitle = "Home", bannerImage = "/images/page-banner.jpg" } = Astro2.props;
   return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, { "pageTitle": pageTitle }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="h-44 bg-cover bg-top bg-no-repeat"${addAttribute(`background-image: url(${bannerImage})`, "style")}> <span class="sr-only">Banner para la pagina ${pageTitle}</span> </div> <div class="py-6"> <div class="cssd-container flex flex-col gap-4 sm:flex-row sm:items-center"> <h1 class="text-3xl font-normal">${pageTitle}</h1> <nav> <ul class="flex items-center text-sm"> <li class="flex items-center"> <a href="/" class="menu-item hover:underline">Inicio</a> <span class="block h-2.5 w-6 bg-[url('/src/assets/breadcrumbs-divider.png')] bg-center bg-no-repeat"></span> </li> <li class="text-accent">${pageTitle}</li> </ul> </nav> </div> </div> <div class="bg-zinc-100 py-12"> <div class="cssd-container page-content"> ${renderSlot($$result2, $$slots["default"])} </div> </div> ` })} `;
 }, "/home/ldore/projects/cluster-salud-sd/src/layouts/PageLayout.astro", void 0);
 
