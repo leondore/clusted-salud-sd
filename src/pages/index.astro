@@ -1,8 +1,4 @@
 ---
-type ImageImport = {
-  default: ImageMetadata;
-};
-
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
@@ -135,35 +131,34 @@ const noticias = await getCollection('noticias');
               (art1, art2) =>
                 art2.data.pubDate.getTime() - art1.data.pubDate.getTime()
             )
-            .map(async (noticia) => {
-              const image: ImageImport = await import(
-                /* @vite-ignore */ noticia.data.image
-              );
-              return (
-                <article class="col-span-3 lg:col-span-1">
-                  <a href={`noticias/${noticia.slug}`} class="block">
-                    <FigureImg image={image.default} alt={noticia.data.title} />
-                  </a>
+            .map(async (noticia) => (
+              <article class="col-span-3 lg:col-span-1">
+                <a href={`noticias/${noticia.slug}`} class="block">
+                  <img
+                    src={noticia.data.image}
+                    alt={noticia.data.title}
+                    class="border-4 border-solid border-sky-100"
+                  />
+                </a>
 
-                  <div class="pb-2.5 pt-6">
-                    <h5 class="mb-2.5 leading-tight">
-                      <a href={`noticias/${noticia.slug}`} class="block">
-                        {noticia.data.title}
-                      </a>
-                    </h5>
-                    <p class="mb-4">{noticia.data.blurb}</p>
-                  </div>
+                <div class="pb-2.5 pt-6">
+                  <h5 class="mb-2.5 leading-tight">
+                    <a href={`noticias/${noticia.slug}`} class="block">
+                      {noticia.data.title}
+                    </a>
+                  </h5>
+                  <p class="mb-4">{noticia.data.blurb}</p>
+                </div>
 
-                  <Button
-                    as="a"
-                    href={`noticias/${noticia.slug}`}
-                    intent="primary"
-                  >
-                    Leer Mas
-                  </Button>
-                </article>
-              );
-            })
+                <Button
+                  as="a"
+                  href={`noticias/${noticia.slug}`}
+                  intent="primary"
+                >
+                  Leer Mas
+                </Button>
+              </article>
+            ))
         }
       </div>
     </div>

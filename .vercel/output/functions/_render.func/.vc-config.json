@@ -1,0 +1,6 @@
+{
+	"runtime": "nodejs18.x",
+	"handler": "home/ldore/projects/cluster-salud-sd/.vercel/output/_functions/entry.mjs",
+	"launcherType": "Nodejs",
+	"supportsResponseStreaming": true
+}

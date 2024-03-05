@@ -7,15 +7,16 @@ type Props<Tag extends HTMLTag> = Polymorphic<{
 }>;
 
 const { as: Tag, intent = 'primary', ...props } = Astro.props;
+const { class: className, ...rest } = props;
 ---
 
 <Tag
-  {...props}
+  {...rest}
   class:list={[
     'button inline-block px-5 py-2.5 text-sm font-semibold text-white',
     { 'bg-primary hover:bg-accent focus:bg-accent': intent === 'primary' },
     { 'bg-accent hover:bg-zinc-800 focus:bg-zinc-800': intent === 'accent' },
-    props.class,
+    className,
   ]}
 >
   <slot />
