@@ -1,14 +1,20 @@
 ---
 interface Props {
   pageTitle: string;
+  bannerTitle?: string;
   bannerImage?: string;
   children: any;
 }
 
 import BaseLayout from '@layouts/BaseLayout.astro';
 
-const { pageTitle = 'Home', bannerImage = '/images/page-banner.jpg' } =
-  Astro.props;
+const {
+  pageTitle = 'Home',
+  bannerImage = '/images/page-banner.jpg',
+  bannerTitle,
+} = Astro.props;
+
+const sectionTitle = bannerTitle || pageTitle;
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -21,7 +27,7 @@ const { pageTitle = 'Home', bannerImage = '/images/page-banner.jpg' } =
 
   <div class="py-6">
     <div class="cssd-container flex flex-col gap-4 sm:flex-row sm:items-center">
-      <h1 class="text-3xl font-normal">{pageTitle}</h1>
+      <h1 class="text-3xl font-normal">{sectionTitle}</h1>
       <nav>
         <ul class="flex items-center text-sm">
           <li class="flex items-center">
@@ -30,7 +36,7 @@ const { pageTitle = 'Home', bannerImage = '/images/page-banner.jpg' } =
               class="block h-2.5 w-6 bg-[url('/src/assets/breadcrumbs-divider.png')] bg-center bg-no-repeat"
             ></span>
           </li>
-          <li class="text-accent">{pageTitle}</li>
+          <li class="text-accent">{sectionTitle}</li>
         </ul>
       </nav>
     </div>
@@ -44,16 +50,31 @@ const { pageTitle = 'Home', bannerImage = '/images/page-banner.jpg' } =
 </BaseLayout>
 
 <style is:global>
-  .page-content > h2,
-  .page-content > h4 {
+  .page-content h2,
+  .page-content h4,
+  .page-content h5 {
     @apply mb-5;
   }
 
-  .page-content > p {
+  .page-content p {
     @apply mb-6;
   }
 
-  .page-content > ol {
-    @apply mb-6 list-inside list-decimal space-y-2.5 text-sm;
+  .page-content ol,
+  .page-content ul {
+    @apply mb-6 list-inside space-y-2.5 text-sm;
+  }
+
+  .page-content ol {
+    @apply list-decimal;
+  }
+
+  .page-content ul {
+    @apply list-disc;
+  }
+
+  .page-content ol li > p,
+  .page-content ul li > p {
+    @apply inline;
   }
 </style>

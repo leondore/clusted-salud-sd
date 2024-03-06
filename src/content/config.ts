@@ -8,6 +8,7 @@ const newsCollection = defineCollection({
     author: z.enum(['HUBHealth', 'CSSD']),
     blurb: z.string(),
     image: z.string(),
+    link: z.string().url().optional(),
   }),
 });
 

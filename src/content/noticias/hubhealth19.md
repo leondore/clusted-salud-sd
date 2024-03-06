@@ -4,6 +4,7 @@ pubDate: 2019-03-08
 author: 'HUBHealth'
 blurb: 'HUbHEALTH19. 08/03/2019 04:00 PM - 06:00 PM. Centro de Convenciones del Ministerio de Relaciones Exteriores. Es organizado por el Cluster de Salud de Santo Domingo y Hub Cámara de Santo Domingo 2019.'
 image: '/images/noticias/hubhealth.jpg'
+link: 'https://www.resumendesalud.net/proximos-eventos/332-hubhealth19'
 ---
 
 # HUbHEALTH19
