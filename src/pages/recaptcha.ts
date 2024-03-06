@@ -1,3 +1,7 @@
+import type { APIRoute } from 'astro';
+
+export const prerender = false;
+
 interface Response {
   success: boolean;
   challenge_ts: string;
@@ -12,7 +16,7 @@ interface ErrorResponse {
 const newResponse = (body: Response | ErrorResponse, status: number) =>
   new Response(JSON.stringify(body), { status });
 
-export async function POST({ request }: { request: Request }) {
+export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
 
@@ -43,4 +47,4 @@ export async function POST({ request }: { request: Request }) {
     }
     return newResponse({ error: 'An unknown error occurred' }, 500);
   }
-}
+};
