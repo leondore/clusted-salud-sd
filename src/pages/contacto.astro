@@ -19,45 +19,48 @@ const alert: IAlert = {
 };
 
 if (Astro.request.method === 'POST') {
-  try {
-    sendGrid.setApiKey(import.meta.env.SENDGRID_API_KEY);
+  // disable email sending
+  alert.show = true;
 
-    const data = await Astro.request.formData();
-    const [name, email, phone, message] = data.values();
+  // try {
+  //   sendGrid.setApiKey(import.meta.env.SENDGRID_API_KEY);
 
-    if (!name) {
-      throw new Error('Debes introducir un nombre');
-    }
-    if (!email) {
-      throw new Error('Debes introducir tu dirección de email');
-    }
+  //   const data = await Astro.request.formData();
+  //   const [name, email, phone, message] = data.values();
 
-    const emailBody = `Nombre: ${name}\nEmail: ${email}\nTeléfono: ${phone}\n\nMensaje: ${message}`;
+  //   if (!name) {
+  //     throw new Error('Debes introducir un nombre');
+  //   }
+  //   if (!email) {
+  //     throw new Error('Debes introducir tu dirección de email');
+  //   }
 
-    const msg: MailDataRequired = {
-      to: 'leon.dore@gmail.com',
-      from: {
-        name: 'Cluster de Salud Santo Domingo',
-        email: 'hello@leon.ninja',
-      },
-      subject: 'Cluster de Salud Santo Domingo: New contact form submission',
-      text: emailBody,
-    };
+  //   const emailBody = `Nombre: ${name}\nEmail: ${email}\nTeléfono: ${phone}\n\nMensaje: ${message}`;
 
-    await sendGrid.send(msg);
-    alert.show = true;
-  } catch (error) {
-    let errorMessage =
-      'Ocurrió un error al enviar tu mensaje. Por favor, intenta de nuevo.';
+  //   const msg: MailDataRequired = {
+  //     to: 'leon.dore@gmail.com',
+  //     from: {
+  //       name: 'Cluster de Salud Santo Domingo',
+  //       email: 'hello@leon.ninja',
+  //     },
+  //     subject: 'Cluster de Salud Santo Domingo: New contact form submission',
+  //     text: emailBody,
+  //   };
 
-    if (error instanceof Error) {
-      errorMessage = error.message;
-    }
+  //   await sendGrid.send(msg);
+  //   alert.show = true;
+  // } catch (error) {
+  //   let errorMessage =
+  //     'Ocurrió un error al enviar tu mensaje. Por favor, intenta de nuevo.';
 
-    alert.type = 'error';
-    alert.message = errorMessage;
-    alert.show = true;
-  }
+  //   if (error instanceof Error) {
+  //     errorMessage = error.message;
+  //   }
+
+  //   alert.type = 'error';
+  //   alert.message = errorMessage;
+  //   alert.show = true;
+  // }
 }
 
 const reCaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY;
